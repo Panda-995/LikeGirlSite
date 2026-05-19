@@ -8,6 +8,7 @@ services:
     environment:
       LIKEGIRL_SQLITE_PATH: /var/www/html/data/likegirl.sqlite
       LIKEGIRL_SQLITE_SEED: /var/www/html/love20240612.sql
+      LIKEGIRL_SECURITY_CODE: ${LIKEGIRL_SECURITY_CODE:-Love}
     volumes:
       - likegirl-data:/var/www/html/data
 

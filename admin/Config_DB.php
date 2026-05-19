@@ -30,7 +30,8 @@ $db_password = "123456";
 $db_name = "LikeGirl20240612";
 
 //敏感信息修改安全码 建议设置复杂一些
-$Like_Code = "Love";
+// Docker users can set LIKEGIRL_SECURITY_CODE instead of editing this file.
+$Like_Code = getenv('LIKEGIRL_SECURITY_CODE') ?: "Love";
 
 //版本号
 $version = 20240612;
