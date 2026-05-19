@@ -1,7 +1,6 @@
 services:
   likegirl:
-    build: .
-    image: likegirlsite-sqlite:latest
+    image: ghcr.io/panda-995/likegirlsite:latest
     container_name: likegirlsite
     restart: unless-stopped
     ports:
