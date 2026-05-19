@@ -34,3 +34,8 @@ $Like_Code = "Love";
 
 //版本号
 $version = 20240612;
+
+// SQLite settings for the Docker image. The old MySQL values are kept above so
+// the original admin UI and variable names do not need to change.
+$sqlite_path = getenv('LIKEGIRL_SQLITE_PATH') ?: __DIR__ . '/../data/likegirl.sqlite';
+$sqlite_seed_file = getenv('LIKEGIRL_SQLITE_SEED') ?: __DIR__ . '/../love20240612.sql';
