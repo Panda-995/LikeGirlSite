@@ -15,12 +15,21 @@ WORKDIR /var/www/html
 
 COPY . /var/www/html/
 
+COPY docker-entrypoint.sh /usr/local/bin/likegirl-entrypoint
+RUN chmod +x /usr/local/bin/likegirl-entrypoint
+
 ENV LIKEGIRL_SQLITE_PATH=/var/www/html/data/likegirl.sqlite
 ENV LIKEGIRL_SQLITE_SEED=/var/www/html/love20240612.sql
 
 RUN mkdir -p /var/www/html/data \
     && chown -R www-data:www-data /var/www/html/data
 
+RUN LIKEGIRL_SQLITE_PATH=/tmp/likegirl-test.sqlite php -r 'include "/var/www/html/admin/Config_DB.php"; include "/var/www/html/admin/SqliteCompat.php"; $connect = mysqli_connect("", "", "", ""); if (!$connect) { fwrite(STDERR, "SQLite init failed\n"); exit(1); }' \
+    && rm -f /tmp/likegirl-test.sqlite*
+
 VOLUME ["/var/www/html/data"]
+
+ENTRYPOINT ["likegirl-entrypoint"]
+CMD ["apache2-foreground"]
 
 EXPOSE 80

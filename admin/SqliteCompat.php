@@ -29,6 +29,7 @@ class LikeGirlSqliteConnection
         } catch (Throwable $exception) {
             $this->connect_error = $exception->getMessage();
             $this->error = $exception->getMessage();
+            error_log('[LikeGirl SQLite] ' . $exception->getMessage());
             $this->pdo = null;
         }
     }
