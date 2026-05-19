@@ -9,7 +9,6 @@ RUN apt-get update \
         curl \
         mbstring \
         pdo_sqlite \
-        sqlite3 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/www/html
