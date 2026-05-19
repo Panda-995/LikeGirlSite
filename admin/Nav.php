@@ -1,3 +1,13 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (empty($_SESSION['loginadmin'])) {
+    header("Location: /admin/login.php");
+    exit;
+}
+?>
 <!--
  * @Version：Like Girl 5.1.0
  * @Author: Ki.
@@ -23,8 +33,9 @@ $loginresult = mysqli_query($connect, $sql);
 if (mysqli_num_rows($loginresult)) {
     $login = mysqli_fetch_array($loginresult);
 } else {
-    header("Location:login.php");
-    die("<script>alert('参数错误')</script>");
+    unset($_SESSION['loginadmin']);
+    header("Location: /admin/login.php");
+    exit;
 }
 $sql = "select * from login";
 $result = mysqli_query($connect, $sql);
